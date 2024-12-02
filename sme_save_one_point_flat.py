@@ -6,14 +6,15 @@ import os
 # System data
 x_ele = 10
 true_a = 100  # real value of 'a'
-x = np.ones(x_ele) * 5
-n_up_true = 70
+x_point = 5
+x = np.ones(x_ele) * x_point
+n_up_true = 75
 n_up = n_up_true
-n_low_true = -70
+n_low_true = -50
 n_low = n_low_true
 # noise = np.random.uniform(n_low_true, n_up_true, x_ele)
-# noise = np.zeros(x_ele)
-noise = np.array([n_up if i % 2 == 0 else n_low for i in range(x_ele)])
+noise = np.zeros(x_ele)
+# noise = np.array([n_up if i % 2 == 0 else n_low for i in range(x_ele)])
 y_true = true_a * x + noise
 
 '''
@@ -52,7 +53,7 @@ fill_ai = None
 fill_valid_a = None
 
 # Points that scroll
-x_fix = 5
+x_fix = x_point
 point1, = ax.plot([x_fix], [0], 'yo', label=r"$y = a_{\mathrm{low}} \cdot x$")  # Yellow dot for valid_a[0]
 point2, = ax.plot([x_fix], [0], 'ro', label=r"$y = a_{\mathrm{up}} \cdot x$")  # Red dot for valid_a[1]
 
@@ -130,7 +131,7 @@ with writer.saving(fig, file_name, dpi=100):
             bi_minus1 = np.vstack(valid_b)  # Stack all valid b
 
         # Prepare x values for the plot
-        x_vals = np.linspace(0.1, 10, x_ele)
+        x_vals = np.linspace(0.1, 15, x_ele) 
 
         # Add new fill areas for this iteration
         if len(ai) == 2:
